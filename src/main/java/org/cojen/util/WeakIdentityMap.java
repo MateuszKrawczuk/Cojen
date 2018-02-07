@@ -609,7 +609,7 @@ public class WeakIdentityMap<K, V> extends AbstractMap<K, V> implements Map<K, V
 
     private Iterator createHashIterator(int type) {
         if (this.count == 0) {
-            return Collections.EMPTY_SET.iterator();
+            return Collections.emptySet().iterator();
         } else {
             return new HashIterator(type);
         }
