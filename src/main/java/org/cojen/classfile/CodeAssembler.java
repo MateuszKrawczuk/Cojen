@@ -753,7 +753,7 @@ public interface CodeAssembler {
      * <p>The generated instruction consumes the value on the stack.
      *
      * @param location The location to branch to
-     * @param choice One of "==", "!=", "<", ">=", ">" or "<="
+     * @param choice One of "==", "!=", {@literal "<", ">=", ">" or "<="}
      * @throws IllegalArgumentException When the choice is not valid
      */
     void ifZeroComparisonBranch(Location location, String choice) 
@@ -767,7 +767,7 @@ public interface CodeAssembler {
      * <p>The generated instruction consumes the two values on the stack.
      *
      * @param location The location to branch to
-     * @param choice One of "==", "!=", "<", ">=", ">" or "<="
+     * @param choice One of {@literal "==", "!=",  "<", ">=", ">" or "<="}
      * @throws IllegalArgumentException When the choice is not valid
      */
     void ifComparisonBranch(Location location, String choice)
@@ -791,8 +791,8 @@ public interface CodeAssembler {
      *
      * @param location The location to branch to
 
-     * @param choice One of "==", "!=", "<", ">=", ">", "<=", "==t", "!=t",
-     * "<t", ">=t", ">t", or "<=t". Object types can only be compared for
+     * @param choice One of {@literal "==", "!=",  "<", ">=", ">", "<=", "==t", "!=t",
+     *  "<t", ">=t", ">t", or "<=t".} Object types can only be compared for
      * equality.
      * @param type Type to expect on the stack
      * @throws IllegalArgumentException When the choice is not valid
@@ -884,10 +884,10 @@ public interface CodeAssembler {
      * DNEG  - negate top double operand
      *
      * LCMP  - compare top two long operands, yielding an int -1, 0 or 1
-     * FCMPG - compare top two float operands, yielding an int -1, 0 or 1 (NaN -> 1)
-     * FCMPL - compare top two float operands, yielding an int -1, 0 or 1 (NaN -> -1)
-     * DCMPG - compare top two double operands, yielding an int -1, 0 or 1 (NaN -> 1)
-     * DCMPL - compare top two double operands, yielding an int -1, 0 or 1 (NaN -> -1)
+     * FCMPG - compare top two float operands, yielding an int -1, 0 or 1 (NaN {@literal ->} 1)
+     * FCMPL - compare top two float operands, yielding an int -1, 0 or 1 (NaN {@literal ->} -1)
+     * DCMPG - compare top two double operands, yielding an int -1, 0 or 1 (NaN {@literal ->} 1)
+     * DCMPL - compare top two double operands, yielding an int -1, 0 or 1 (NaN {@literal ->} -1)
      * </pre>
      *
      * A not operation (~) is performed by doing a loadConstant with either
