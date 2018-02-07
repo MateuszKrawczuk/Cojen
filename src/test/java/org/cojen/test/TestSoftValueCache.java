@@ -32,8 +32,8 @@ public class TestSoftValueCache {
             if (i % 100 == 0) {
                 System.out.println("Size = " + cache.size());
             }
-            Integer key = new Integer(i);
-            Integer value = new Integer(j);
+            Integer key = i;
+            Integer value = j;
             cache.put(key, value);
         }
   

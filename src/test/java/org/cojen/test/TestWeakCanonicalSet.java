@@ -31,7 +31,7 @@ public class TestWeakCanonicalSet {
             if (i % 100 == 0) {
                 System.out.println("Size = " + cache.size());
             }
-            Integer value = new Integer(i % 10000);
+            Integer value = i % 10000;
             cache.put(value);
         }
   

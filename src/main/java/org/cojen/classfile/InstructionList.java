@@ -662,7 +662,7 @@ class InstructionList implements CodeBuffer {
                             subAdjustMap.put(target, subAdjust);
                         }
 
-                        stackDepth += subAdjust.intValue();
+                        stackDepth += subAdjust;
                     }
                 }
             }
