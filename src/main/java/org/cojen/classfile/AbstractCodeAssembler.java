@@ -119,8 +119,7 @@ public abstract class AbstractCodeAssembler implements CodeAssembler {
         MethodInfo defineMethod = null;
 
         MethodInfo[] methods = cf.getMethods();
-        for (int i=0; i<methods.length; i++) {
-            MethodInfo method = methods[i];
+        for (MethodInfo method : methods) {
             if ("define".equals(method.getName())) {
                 if (defineMethod != null) {
                     throw new IllegalArgumentException("Multiple define methods found");

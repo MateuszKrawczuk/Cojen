@@ -76,8 +76,7 @@ public class ExceptionsAttr extends Attribute {
     public void writeDataTo(DataOutput dout) throws IOException {
         int size = mExceptions.size();
         dout.writeShort(size);
-        for (int i=0; i<size; i++) {
-            ConstantClassInfo info = mExceptions.get(i);
+        for (ConstantClassInfo info : mExceptions) {
             dout.writeShort(info.getIndex());
         }
     }

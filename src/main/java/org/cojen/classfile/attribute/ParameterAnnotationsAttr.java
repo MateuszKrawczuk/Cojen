@@ -120,12 +120,11 @@ public abstract class ParameterAnnotationsAttr extends Attribute {
     public void writeDataTo(DataOutput dout) throws IOException {
         int size = mParameterAnnotations.size();
         dout.writeByte(size);
-        for (int i=0; i<size; i++) {
-            Vector<Annotation> annotations = mParameterAnnotations.get(i);
+        for (Vector<Annotation> annotations : mParameterAnnotations) {
             int subSize = annotations.size();
             dout.writeShort(subSize);
-            for (int j=0; j<subSize; j++) {
-                annotations.get(j).writeTo(dout);
+            for (Annotation annotation : annotations) {
+                annotation.writeTo(dout);
             }
         }
     }

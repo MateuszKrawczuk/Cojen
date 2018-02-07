@@ -170,8 +170,7 @@ public class LocalVariableTableAttr extends Attribute {
         dout.writeShort(mRangeCount);
 
         int size = mCleanEntries.size();
-        for (int i=0; i<size; i++) {
-            Entry entry = mCleanEntries.get(i);
+        for (Entry entry : mCleanEntries) {
             LocalVariable localVar = entry.mLocalVar;
 
             Set<LocationRange> ranges = localVar.getLocationRangeSet();
@@ -223,8 +222,8 @@ public class LocalVariableTableAttr extends Attribute {
         mCleanEntries = new ArrayList<Entry>(size);
         mRangeCount = 0;
 
-        outer: for (int i=0; i<size; i++) {
-            Entry entry = mEntries.get(i);
+        outer:
+        for (Entry entry : mEntries) {
             LocalVariable localVar = entry.mLocalVar;
 
             Set<LocationRange> ranges = localVar.getLocationRangeSet();
@@ -247,7 +246,7 @@ public class LocalVariableTableAttr extends Attribute {
                     continue outer;
                 }
             }
-            
+
             mCleanEntries.add(entry);
             mRangeCount += entry.getRangeCount();
         }

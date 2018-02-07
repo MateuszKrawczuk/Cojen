@@ -399,8 +399,8 @@ public class MethodInfo {
         int length = 8;
         
         int size = mAttributes.size();
-        for (int i=0; i<size; i++) {
-            length += mAttributes.get(i).getLength();
+        for (Attribute mAttribute : mAttributes) {
+            length += mAttribute.getLength();
         }
         
         return length;
@@ -413,13 +413,12 @@ public class MethodInfo {
         
         int size = mAttributes.size();
         dout.writeShort(size);
-        for (int i=0; i<size; i++) {
-            Attribute attr = mAttributes.get(i);
+        for (Attribute attr : mAttributes) {
             try {
                 attr.writeTo(dout);
             } catch (IllegalStateException e) {
-                IllegalStateException e2 = 
-                    new IllegalStateException(e.getMessage() + ": " + toString());
+                IllegalStateException e2 =
+                        new IllegalStateException(e.getMessage() + ": " + toString());
                 try {
                     e2.initCause(e);
                 } catch (NoSuchMethodError e3) {

@@ -122,8 +122,8 @@ public class InnerClassesAttr extends Attribute {
     public void writeDataTo(DataOutput dout) throws IOException {
         int size = mInnerClasses.size();
         dout.writeShort(size);
-        for (int i=0; i<size; i++) {
-            mInnerClasses.get(i).writeTo(dout);
+        for (Info mInnerClass : mInnerClasses) {
+            mInnerClass.writeTo(dout);
         }
     }
 

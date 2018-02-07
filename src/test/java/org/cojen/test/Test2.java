@@ -58,8 +58,8 @@ public class Test2 {
         System.out.println(md.getReturnType());
         System.out.println(md.getParameterCount());
         params = md.getParameterTypes();
-        for (int i=0; i<params.length; i++) {
-            System.out.println(params[i]);
+        for (TypeDesc param1 : params) {
+            System.out.println(param1);
         }
 
         System.out.println("--------------");
@@ -72,8 +72,8 @@ public class Test2 {
         System.out.println(md2.getReturnType());
         System.out.println(md2.getParameterCount());
         params = md2.getParameterTypes();
-        for (int i=0; i<params.length; i++) {
-            System.out.println(params[i]);
+        for (TypeDesc param : params) {
+            System.out.println(param);
         }
     }
 }

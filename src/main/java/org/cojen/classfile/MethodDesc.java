@@ -256,8 +256,8 @@ public class MethodDesc extends Descriptor implements Serializable {
         buf[0] = '(';
         int index = 1;
         String paramDesc;
-        for (int i=0; i<paramsLength; i++) {
-            paramDesc = params[i].getDescriptor();
+        for (TypeDesc param : params) {
+            paramDesc = param.getDescriptor();
             int paramDescLength = paramDesc.length();
             paramDesc.getChars(0, paramDescLength, buf, index);
             index += paramDescLength;

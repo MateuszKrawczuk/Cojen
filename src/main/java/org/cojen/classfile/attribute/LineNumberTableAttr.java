@@ -93,15 +93,13 @@ public class LineNumberTableAttr extends Attribute {
     public void writeDataTo(DataOutput dout) throws IOException {
         int size = mEntries.size();
         dout.writeShort(size);
-        for (int i=0; i<size; i++) {
-            Entry entry = mEntries.get(i);
-            
+        for (Entry entry : mEntries) {
             int start_pc = entry.mStart.getLocation();
 
             if (start_pc < 0 || start_pc > 65535) {
                 throw new IllegalStateException
-                    ("Value for line number table entry start PC out of " +
-                     "valid range: " + start_pc);
+                        ("Value for line number table entry start PC out of " +
+                                "valid range: " + start_pc);
             }
 
             dout.writeShort(start_pc);

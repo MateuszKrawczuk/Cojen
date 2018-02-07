@@ -371,8 +371,7 @@ public abstract class BeanPropertyAccessor<B> {
                                       BeanProperty[] props) {
         List[] cases = new List[caseCount];
 
-        for (int i=0; i<props.length; i++) {
-            BeanProperty prop = props[i];
+        for (BeanProperty prop : props) {
             int hashCode = prop.getName().hashCode();
             int caseValue = (hashCode & 0x7fffffff) % caseCount;
             List matches = cases[caseValue];
@@ -475,21 +474,19 @@ public abstract class BeanPropertyAccessor<B> {
 
         Map map = BeanIntrospector.getAllProperties(beanType);
 
-        Iterator it = map.values().iterator();
-        while (it.hasNext()) {
-            BeanProperty bp = (BeanProperty)it.next();
+        for (Object o : map.values()) {
+            BeanProperty bp = (BeanProperty) o;
 
             if (set == PropertySet.READ_WRITE ||
-                set == PropertySet.READ_WRITE_UNCHECKED_EXCEPTIONS)
-            {
+                    set == PropertySet.READ_WRITE_UNCHECKED_EXCEPTIONS) {
                 if (bp.getReadMethod() == null || bp.getWriteMethod() == null) {
                     continue;
                 }
             }
- 
-            boolean checkedAllowed = 
-                set != PropertySet.UNCHECKED_EXCEPTIONS &&
-                set != PropertySet.READ_WRITE_UNCHECKED_EXCEPTIONS;
+
+            boolean checkedAllowed =
+                    set != PropertySet.UNCHECKED_EXCEPTIONS &&
+                            set != PropertySet.READ_WRITE_UNCHECKED_EXCEPTIONS;
 
             if (bp.getReadMethod() != null) {
                 if (checkedAllowed || !throwsCheckedException(bp.getReadMethod())) {

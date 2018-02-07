@@ -205,9 +205,7 @@ public class ClassFile {
         // Load inner and outer classes.
         if (cf.mInnerClassesAttr != null && loader != null) {
             InnerClassesAttr.Info[] infos = cf.mInnerClassesAttr.getInnerClassesInfo();
-            for (int i=0; i<infos.length; i++) {
-                InnerClassesAttr.Info info = infos[i];
-
+            for (InnerClassesAttr.Info info : infos) {
                 if (thisClass.equals(info.getInnerClass())) {
                     // This class is an inner class.
                     if (info.getInnerClassName() != null) {
@@ -216,23 +214,23 @@ public class ClassFile {
                     ConstantClassInfo outer = info.getOuterClass();
                     if (cf.mOuterClass == null && outer != null) {
                         cf.mOuterClass = readOuterClass
-                            (outer, loader, attrFactory, loadedClassFiles);
+                                (outer, loader, attrFactory, loadedClassFiles);
                     }
                     Modifiers innerFlags = info.getModifiers();
                     cf.mModifiers = cf.mModifiers
-                        .toStatic(innerFlags.isStatic())
-                        .toPrivate(innerFlags.isPrivate())
-                        .toProtected(innerFlags.isProtected())
-                        .toPublic(innerFlags.isPublic());
+                            .toStatic(innerFlags.isStatic())
+                            .toPrivate(innerFlags.isPrivate())
+                            .toProtected(innerFlags.isProtected())
+                            .toPublic(innerFlags.isPublic());
                 } else if (info.getOuterClass() == null ||
-                           thisClass.equals(info.getOuterClass())) {
+                        thisClass.equals(info.getOuterClass())) {
 
                     // This class is an outer class.
                     ConstantClassInfo inner = info.getInnerClass();
                     if (inner != null) {
                         ClassFile innerClass = readInnerClass
-                            (inner, loader, attrFactory, loadedClassFiles, cf);
-                        
+                                (inner, loader, attrFactory, loadedClassFiles, cf);
+
                         if (innerClass != null) {
                             if (innerClass.getInnerClassName() != null) {
                                 innerClass.mInnerClassName = info.getInnerClassName().getValue();
@@ -480,8 +478,7 @@ public class ClassFile {
         int size = mMethods.size();
         List<MethodInfo> methodsOnly = new ArrayList<MethodInfo>(size);
 
-        for (int i=0; i<size; i++) {
-            MethodInfo method = mMethods.get(i);
+        for (MethodInfo method : mMethods) {
             String name = method.getName();
             if (!"<init>".equals(name) && !"<clinit>".equals(name)) {
                 methodsOnly.add(method);
@@ -498,8 +495,7 @@ public class ClassFile {
         int size = mMethods.size();
         List<MethodInfo> ctorsOnly = new ArrayList<MethodInfo>(size);
 
-        for (int i=0; i<size; i++) {
-            MethodInfo method = mMethods.get(i);
+        for (MethodInfo method : mMethods) {
             if ("<init>".equals(method.getName())) {
                 ctorsOnly.add(method);
             }
@@ -515,8 +511,7 @@ public class ClassFile {
     public MethodInfo getInitializer() {
         int size = mMethods.size();
 
-        for (int i=0; i<size; i++) {
-            MethodInfo method = mMethods.get(i);
+        for (MethodInfo method : mMethods) {
             if ("<clinit>".equals(method.getName())) {
                 return method;
             }
@@ -772,8 +767,8 @@ public class ClassFile {
         
         // exception stuff...
         Class[] exceptions = method.getExceptionTypes();
-        for (int i=0; i<exceptions.length; i++) {
-            mi.addException(TypeDesc.forClass(exceptions[i]));
+        for (Class exception : exceptions) {
+            mi.addException(TypeDesc.forClass(exception));
         }
 
         return mi;

@@ -198,16 +198,16 @@ class AssemblyStylePrinter implements DisassemblyTool.Printer {
 
         int m = 0;
 
-        for (int i=0; i<fields.length; i++) {
-            members[m++] = fields[i];
+        for (FieldInfo field : fields) {
+            members[m++] = field;
         }
 
-        for (int i=0; i<methods.length; i++) {
-            members[m++] = methods[i];
+        for (MethodInfo method : methods) {
+            members[m++] = method;
         }
 
-        for (int i=0; i<ctors.length; i++) {
-            members[m++] = ctors[i];
+        for (MethodInfo ctor : ctors) {
+            members[m++] = ctor;
         }
 
         if (init != null) {
@@ -433,9 +433,9 @@ class AssemblyStylePrinter implements DisassemblyTool.Printer {
     }
 
     private void disassemble(String indent, Annotation[] annotations) {
-        for (int i=0; i<annotations.length; i++) {
+        for (Annotation annotation : annotations) {
             print(indent);
-            disassemble(indent, annotations[i]);
+            disassemble(indent, annotation);
             println();
         }
     }
@@ -1452,8 +1452,7 @@ class AssemblyStylePrinter implements DisassemblyTool.Printer {
         List<ExceptionHandler> handlers = mCatchLocations.get(labelKey);
 
         if (handlers != null) {
-            for (int i=0; i<handlers.size(); i++) {
-                ExceptionHandler handler = handlers.get(i);
+            for (ExceptionHandler handler : handlers) {
                 print(indent, "try (");
                 print(getLabel(handler.getStartLocation().getLocation()));
                 print("..");

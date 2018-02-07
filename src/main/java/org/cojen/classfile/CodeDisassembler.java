@@ -1614,8 +1614,7 @@ public class CodeDisassembler {
         List<ExceptionHandler> handlers = mCatchLocations.get(labelKey);
 
         if (handlers != null) {
-            for (int i=0; i<handlers.size(); i++) {
-                ExceptionHandler handler = handlers.get(i);
+            for (ExceptionHandler handler : handlers) {
                 Label start = getLabel(handler.getStartLocation().getLocation());
                 Label end = getLabel(handler.getEndLocation().getLocation());
                 String catchClassName;

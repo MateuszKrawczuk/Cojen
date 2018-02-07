@@ -419,9 +419,8 @@ public class WeakIdentityMap<K, V> extends AbstractMap<K, V> implements Map<K, V
     }
 
     public void putAll(Map<? extends K, ? extends V> t) {
-        Iterator i = t.entrySet().iterator();
-        while (i.hasNext()) {
-            Map.Entry e = (Map.Entry) i.next();
+        for (Object o : t.entrySet()) {
+            Map.Entry e = (Map.Entry) o;
             put((K) e.getKey(), (V) e.getValue());
         }
     }

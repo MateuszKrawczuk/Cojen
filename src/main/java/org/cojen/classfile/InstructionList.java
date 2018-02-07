@@ -230,12 +230,12 @@ class InstructionList implements CodeBuffer {
             // Assign variable numbers using the simplest technique.
 
             int size = mLocalVariables.size();
-            for (int i=0; i<size; i++) {
-                LocalVariableImpl var = (LocalVariableImpl)mLocalVariables.get(i);
+            for (LocalVariable mLocalVariable : mLocalVariables) {
+                LocalVariableImpl var = (LocalVariableImpl) mLocalVariable;
                 if (var.getNumber() < 0) {
                     var.setNumber(mMaxLocals);
                 }
-            
+
                 int max = var.getNumber() + (var.isDoubleWord() ? 2 : 1);
                 if (max > mMaxLocals) {
                     mMaxLocals = max;
@@ -263,8 +263,8 @@ class InstructionList implements CodeBuffer {
             List<List<LocalVariable>> registerUsers = new ArrayList<List<LocalVariable>>();
             
             // First fill up list with variables that have a fixed number.
-            for (int v=0; v<size; v++) {
-                LocalVariableImpl var = (LocalVariableImpl)mLocalVariables.get(v);
+            for (LocalVariable mLocalVariable : mLocalVariables) {
+                LocalVariableImpl var = (LocalVariableImpl) mLocalVariable;
                 if (var.isFixedNumber()) {
                     addRegisterUser(registerUsers, var);
                     // Ensure that max locals is large enough to hold parameters.
@@ -515,8 +515,8 @@ class InstructionList implements CodeBuffer {
 
                     LabelInstruction[] targets = instr.getBranchTargets();
                     if (targets != null) {
-                        for (int i=0; i<targets.length; i++) {
-                            if (liveIn[v].get(targets[i].getLocation())) {
+                        for (LabelInstruction target : targets) {
+                            if (liveIn[v].get(target.getLocation())) {
                                 setLiveOut = true;
                                 passAgain |= liveOut[v].set(n);
                             }
@@ -588,8 +588,8 @@ class InstructionList implements CodeBuffer {
         registerScan:
         for (; r<registerUsers.size(); r++) {
             List users = getRegisterUsers(registerUsers, r);
-            for (int i=0; i<users.size(); i++) {
-                int v2 = ((LocalVariableImpl)users.get(i)).getIndex();
+            for (Object user : users) {
+                int v2 = ((LocalVariableImpl) user).getIndex();
                 if (live[v].intersects(live[v2])) {
                     continue registerScan;
                 }
@@ -1311,8 +1311,8 @@ class InstructionList implements CodeBuffer {
     private static int argSize(TypeDesc[] params) {
         int size = 0;
         if (params != null) {
-            for (int i=0; i<params.length; i++) {
-                size += returnSize(params[i]);
+            for (TypeDesc param : params) {
+                size += returnSize(param);
             }
         }
         return size;
@@ -2201,8 +2201,8 @@ class InstructionList implements CodeBuffer {
         @Override
         public boolean isResolved() {
             if (mDefaultLocation.getLocation() >= 0) {
-                for (int i=0; i<mLocations.length; i++) {
-                    if (mLocations[i].getLocation() < 0) {
+                for (LabelInstruction mLocation1 : mLocations) {
+                    if (mLocation1.getLocation() < 0) {
                         break;
                     }
                 }

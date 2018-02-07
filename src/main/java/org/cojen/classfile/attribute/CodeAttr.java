@@ -255,8 +255,8 @@ public class CodeAttr extends Attribute {
         }
         
         int size = mAttributes.size();
-        for (int i=0; i<size; i++) {
-            length += mAttributes.get(i).getLength();
+        for (Attribute mAttribute : mAttributes) {
+            length += mAttribute.getLength();
             length += 6; // attributes have an intial 6 byte length
         }
         
@@ -281,8 +281,8 @@ public class CodeAttr extends Attribute {
             int exceptionHandlerCount = handlers.length;
             dout.writeShort(exceptionHandlerCount);
 
-            for (int i=0; i<exceptionHandlerCount; i++) {
-                handlers[i].writeTo(dout);
+            for (ExceptionHandler handler : handlers) {
+                handler.writeTo(dout);
             }
         } else {
             dout.writeShort(0);
@@ -290,8 +290,7 @@ public class CodeAttr extends Attribute {
         
         int size = mAttributes.size();
         dout.writeShort(size);
-        for (int i=0; i<size; i++) {
-            Attribute attr = mAttributes.get(i);
+        for (Attribute attr : mAttributes) {
             attr.writeTo(dout);
         }
 

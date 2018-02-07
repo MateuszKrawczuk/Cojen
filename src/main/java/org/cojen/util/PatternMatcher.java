@@ -346,9 +346,9 @@ public abstract class PatternMatcher<V> {
                     generateWildcard(null, depth, posIndex + 2);
                 } else {
                     int size = subNodes.size();
-                    for (int i=0; i<size; i++) {
-                        generateWildcard((PatternNode)subNodes.get(i),
-                                         depth, posIndex + 2);
+                    for (Object subNode : subNodes) {
+                        generateWildcard((PatternNode) subNode,
+                                depth, posIndex + 2);
                         mBuilder.loadLocal(savedIndex);
                         mBuilder.storeLocal(mIndexLocal);
                     }
@@ -385,9 +385,9 @@ public abstract class PatternMatcher<V> {
             
             if (subNodes != null) {
                 int size = subNodes.size();
-                for (int i=0; i<size; i++) {
+                for (Object subNode : subNodes) {
                     generateBranches
-                        ((PatternNode)subNodes.get(i), depth + 1, posIndex);
+                            ((PatternNode) subNode, depth + 1, posIndex);
                 }
             }
             
@@ -499,8 +499,8 @@ public abstract class PatternMatcher<V> {
             int height = 1;
             if (mSubNodes != null) {
                 int size = mSubNodes.size();
-                for (int i=0; i<size; i++) {
-                    int subH = ((PatternNode)mSubNodes.get(i)).getHeight();
+                for (Object mSubNode : mSubNodes) {
+                    int subH = ((PatternNode) mSubNode).getHeight();
                     if (subH > height) {
                         height = subH;
                     }
@@ -527,9 +527,9 @@ public abstract class PatternMatcher<V> {
             int wildCount = getWildcardCount();
             
             if (mSubNodes != null) {
-                for (int i=0; i<mSubNodes.size(); i++) {
-                    int count = 
-                        ((PatternNode)mSubNodes.get(i)).getMaxWildcardCount();
+                for (Object mSubNode : mSubNodes) {
+                    int count =
+                            ((PatternNode) mSubNode).getMaxWildcardCount();
                     if (count > wildCount) {
                         wildCount = count;
                     }
@@ -557,8 +557,8 @@ public abstract class PatternMatcher<V> {
             }
 
             int size = mSubNodes.size();
-            for (int i=0; i<size; i++) {
-                PatternNode node = (PatternNode)mSubNodes.get(i);
+            for (Object mSubNode : mSubNodes) {
+                PatternNode node = (PatternNode) mSubNode;
                 if (node.mChar == c) {
                     node.buildPathTo(pattern, order, index + 1);
                     return;
@@ -575,8 +575,8 @@ public abstract class PatternMatcher<V> {
         public void dump(PrintStream out, String indent) {
             if (mSubNodes != null) {
                 String subIndent = indent.concat(" ");
-                for (int i=0; i<mSubNodes.size(); i++) {
-                    ((PatternNode)mSubNodes.get(i)).dump(out, subIndent);
+                for (Object mSubNode : mSubNodes) {
+                    ((PatternNode) mSubNode).dump(out, subIndent);
                 }
             }
             out.print(indent);

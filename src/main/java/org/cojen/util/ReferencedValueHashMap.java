@@ -453,9 +453,8 @@ public abstract class ReferencedValueHashMap<K, V> extends AbstractMap<K, V>
     }
 
     public void putAll(Map<? extends K, ? extends V> t) {
-        Iterator i = t.entrySet().iterator();
-        while (i.hasNext()) {
-            Map.Entry<K, V> e = (Map.Entry<K, V>) i.next();
+        for (Object o : t.entrySet()) {
+            Map.Entry<K, V> e = (Map.Entry<K, V>) o;
             put(e.getKey(), e.getValue());
         }
     }

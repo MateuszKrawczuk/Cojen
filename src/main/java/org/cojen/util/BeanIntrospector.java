@@ -79,8 +79,8 @@ public class BeanIntrospector {
 
         // Ensure that all implemented interfaces are properly analyzed.
         Class[] interfaces = clazz.getInterfaces();
-        for (int i=0; i<interfaces.length; i++) {
-            fillInProperties(interfaces[i], properties);
+        for (Class anInterface : interfaces) {
+            fillInProperties(anInterface, properties);
         }
 
         return Collections.unmodifiableMap(properties);
@@ -101,12 +101,12 @@ public class BeanIntrospector {
         IndexedProperty indexedProperty;
 
         // Gather non-conflicting "get" accessors
-        for (int i=0; i<methods.length; i++) {
-            method = methods[i];
+        for (Method method5 : methods) {
+            method = method5;
             if (Modifier.isStatic(method.getModifiers()) ||
-                (type = method.getReturnType()) == void.class ||
-                method.getParameterTypes().length > 0 ||
-                (name = extractPropertyName(method, "get")) == null) {
+                    (type = method.getReturnType()) == void.class ||
+                    method.getParameterTypes().length > 0 ||
+                    (name = extractPropertyName(method, "get")) == null) {
                 continue;
             }
             if (properties.containsKey(name)) {
@@ -131,12 +131,12 @@ public class BeanIntrospector {
         }
 
         // Gather non-conflicting "is" accessors.
-        for (int i=0; i<methods.length; i++) {
-            method = methods[i];
+        for (Method method4 : methods) {
+            method = method4;
             if (Modifier.isStatic(method.getModifiers()) ||
-                (type = method.getReturnType()) != boolean.class ||
-                method.getParameterTypes().length > 0 ||
-                (name = extractPropertyName(method, "is")) == null) {
+                    (type = method.getReturnType()) != boolean.class ||
+                    method.getParameterTypes().length > 0 ||
+                    (name = extractPropertyName(method, "is")) == null) {
                 continue;
             }
             if (properties.containsKey(name)) {
@@ -152,12 +152,12 @@ public class BeanIntrospector {
         }
 
         // Gather non-conflicting mutators.
-        for (int i=0; i<methods.length; i++) {
-            method = methods[i];
+        for (Method method3 : methods) {
+            method = method3;
             if (Modifier.isStatic(method.getModifiers()) ||
-                method.getReturnType() != void.class ||
-                (params = method.getParameterTypes()).length != 1 ||
-                (name = extractPropertyName(method, "set")) == null) {
+                    method.getReturnType() != void.class ||
+                    (params = method.getParameterTypes()).length != 1 ||
+                    (name = extractPropertyName(method, "set")) == null) {
                 continue;
             }
             type = params[0];
@@ -183,12 +183,12 @@ public class BeanIntrospector {
         }
 
         // Gather non-conflicting indexed property accessors.
-        for (int i=0; i<methods.length; i++) {
-            method = methods[i];
+        for (Method method2 : methods) {
+            method = method2;
             if (Modifier.isStatic(method.getModifiers()) ||
-                (type = method.getReturnType()) == void.class ||
-                (params = method.getParameterTypes()).length != 1 ||
-                (name = extractPropertyName(method, "get")) == null) {
+                    (type = method.getReturnType()) == void.class ||
+                    (params = method.getParameterTypes()).length != 1 ||
+                    (name = extractPropertyName(method, "get")) == null) {
                 continue;
             }
             if (properties.containsKey(name)) {
@@ -210,12 +210,12 @@ public class BeanIntrospector {
         }
 
         // Gather non-conflicting indexed property mutators.
-        for (int i=0; i<methods.length; i++) {
-            method = methods[i];
+        for (Method method1 : methods) {
+            method = method1;
             if (Modifier.isStatic(method.getModifiers()) ||
-                method.getReturnType() != void.class ||
-                (params = method.getParameterTypes()).length != 2 ||
-                (name = extractPropertyName(method, "set")) == null) {
+                    method.getReturnType() != void.class ||
+                    (params = method.getParameterTypes()).length != 2 ||
+                    (name = extractPropertyName(method, "set")) == null) {
                 continue;
             }
             type = params[1];

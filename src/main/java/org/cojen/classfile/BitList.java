@@ -171,9 +171,9 @@ final class BitList implements Cloneable {
     public String toString() {
         StringBuffer buf = new StringBuffer(mData.length + 2);
         buf.append('[');
-        for (int i=0; i<mData.length; i++) {
-            String binary = Integer.toBinaryString(mData[i]);
-            for (int j=binary.length(); j<32; j++) {
+        for (int aMData : mData) {
+            String binary = Integer.toBinaryString(aMData);
+            for (int j = binary.length(); j < 32; j++) {
                 buf.append('0');
             }
             buf.append(binary);

@@ -434,8 +434,8 @@ public class Annotation {
             case MEMBER_TAG_ARRAY: {
                 MemberValue[] values = (MemberValue[])mValue;
                 int length = 3;
-                for (int i=0; i<values.length; i++) {
-                    length += values[i].getLength();
+                for (MemberValue value : values) {
+                    length += value.getLength();
                 }
                 return length;
             }
@@ -469,8 +469,8 @@ public class Annotation {
             case MEMBER_TAG_ARRAY:
                 MemberValue[] values = (MemberValue[])mValue;
                 dout.writeShort(values.length);
-                for (int i=0; i<values.length; i++) {
-                    values[i].writeTo(dout);
+                for (MemberValue value : values) {
+                    value.writeTo(dout);
                 }
                 break;
                 

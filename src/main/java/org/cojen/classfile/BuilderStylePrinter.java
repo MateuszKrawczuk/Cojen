@@ -160,8 +160,8 @@ class BuilderStylePrinter implements DisassemblyTool.Printer {
         }
 
         String[] interfaces = cf.getInterfaces();
-        for (int i=0; i<interfaces.length; i++) {
-            println("cf.addInterface(\"" + escape(interfaces[i]) + "\");");
+        for (String anInterface : interfaces) {
+            println("cf.addInterface(\"" + escape(anInterface) + "\");");
         }
 
         if (cf.getInitializer() != null) {
@@ -388,9 +388,9 @@ class BuilderStylePrinter implements DisassemblyTool.Printer {
             println("mi.markDeprecated();");
         }
         TypeDesc[] exceptions = mi.getExceptions();
-        for (int j=0; j<exceptions.length; j++) {
+        for (TypeDesc exception : exceptions) {
             print("mi.addException(");
-            print(exceptions[j]);
+            print(exception);
             println(");");
         }
 

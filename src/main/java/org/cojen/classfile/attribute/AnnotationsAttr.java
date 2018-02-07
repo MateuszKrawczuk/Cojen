@@ -71,8 +71,8 @@ public abstract class AnnotationsAttr extends Attribute {
     public void writeDataTo(DataOutput dout) throws IOException {
         int size = mAnnotations.size();
         dout.writeShort(size);
-        for (int i=0; i<size; i++) {
-            mAnnotations.get(i).writeTo(dout);
+        for (Annotation mAnnotation : mAnnotations) {
+            mAnnotation.writeTo(dout);
         }
     }
 }
