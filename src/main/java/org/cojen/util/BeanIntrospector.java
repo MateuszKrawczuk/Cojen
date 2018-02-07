@@ -44,7 +44,7 @@ public class BeanIntrospector {
      * Returns a Map of all the available properties on a given class including
      * write-only and indexed properties.
      * 
-     * @return Map<String, BeanProperty> an unmodifiable mapping of property
+     * @return an unmodifiable mapping of property
      * names (Strings) to BeanProperty objects.
      *
      */
