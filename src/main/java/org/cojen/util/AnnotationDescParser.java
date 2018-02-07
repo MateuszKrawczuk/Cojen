@@ -68,7 +68,7 @@ public class AnnotationDescParser {
      *
      * @param rootAnnotation root annotation
      * @return root annotation
-     * @throws IllegalArgumentExcecption if annotation is malformed
+     * @throws IllegalArgumentException if annotation is malformed
      */
     public Annotation parse(Annotation rootAnnotation) {
         mPos = 0;
