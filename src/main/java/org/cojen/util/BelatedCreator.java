@@ -189,7 +189,7 @@ public abstract class BelatedCreator<T, E extends Exception> {
         }
 
         if (mBogus == null) {
-            mRef = new AtomicReference<T>(createBogus());
+            mRef = new AtomicReference<>(createBogus());
 
             mBogus = AccessController.doPrivileged(new PrivilegedAction<T>() {
                 public T run() {

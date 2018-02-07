@@ -34,7 +34,7 @@ import java.util.Map;
 public class BeanIntrospector {
     // Weakly maps Class objects to softly referenced BeanProperty maps.
     private static Cache<Class, SoftReference<Map<String, BeanProperty>>> cPropertiesCache =
-        new WeakIdentityCache<Class, SoftReference<Map<String, BeanProperty>>>(17);
+            new WeakIdentityCache<>(17);
 
     public static void main(String[] args) throws Exception {
         System.out.println(getAllProperties(Class.forName(args[0])));
@@ -59,7 +59,7 @@ public class BeanIntrospector {
                 }
             }
             properties = createProperties(clazz);
-            cPropertiesCache.put(clazz, new SoftReference<Map<String, BeanProperty>>(properties));
+            cPropertiesCache.put(clazz, new SoftReference<>(properties));
             return properties;
         }
     }
@@ -69,7 +69,7 @@ public class BeanIntrospector {
             return Collections.emptyMap();
         }
 
-        Map<String, BeanProperty> properties = new HashMap<String, BeanProperty>();
+        Map<String, BeanProperty> properties = new HashMap<>();
         fillInProperties(clazz, properties);
 
         // Properties defined in Object are also available to interfaces.

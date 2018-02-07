@@ -66,7 +66,7 @@ public class RuntimeClassFile extends ClassFile {
 
     private static final Random cRandom = new Random();
 
-    private static Cache<Object, Loader> cLoaders = new WeakValueCache<Object, Loader>(11);
+    private static Cache<Object, Loader> cLoaders = new WeakValueCache<>(11);
 
     private final Loader mLoader;
 
@@ -266,7 +266,7 @@ public class RuntimeClassFile extends ClassFile {
                 if (permList.size() == 1) {
                     permsKey = permList.get(0);
                 } else if (permList.size() > 1) {
-                    permsKey = new HashSet<Permission>(permList);
+                    permsKey = new HashSet<>(permList);
                 }
             }
 
@@ -275,7 +275,7 @@ public class RuntimeClassFile extends ClassFile {
                 if (principals.length == 1) {
                     principalsKey = principals[0];
                 } else {
-                    Set<Principal> principalSet = new HashSet<Principal>(principals.length);
+                    Set<Principal> principalSet = new HashSet<>(principals.length);
                     for (Principal principal : principals) {
                         principalSet.add(principal);
                     }
@@ -290,7 +290,7 @@ public class RuntimeClassFile extends ClassFile {
     }
 
     private static final class Loader extends ClassLoader {
-        private final Cache<String, Boolean> mReservedNames = new WeakKeyCache<String, Boolean>(17);
+        private final Cache<String, Boolean> mReservedNames = new WeakKeyCache<>(17);
         private final ProtectionDomain mDomain;
 
         Loader(ClassLoader parent, ProtectionDomain domain) {

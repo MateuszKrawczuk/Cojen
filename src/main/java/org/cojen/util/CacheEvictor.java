@@ -43,7 +43,7 @@ class CacheEvictor extends Thread {
     private final ReferenceQueue<Object> mQueue;
 
     private CacheEvictor() {
-        mQueue = new ReferenceQueue<Object>();
+        mQueue = new ReferenceQueue<>();
     }
 
     @Override

@@ -33,7 +33,7 @@ import org.cojen.classfile.constant.ConstantClassInfo;
  */
 public class ExceptionsAttr extends Attribute {
 
-    private List<ConstantClassInfo> mExceptions = new ArrayList<ConstantClassInfo>(2);
+    private List<ConstantClassInfo> mExceptions = new ArrayList<>(2);
     
     public ExceptionsAttr(ConstantPool cp) {
         super(cp, EXCEPTIONS);

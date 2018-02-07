@@ -71,10 +71,10 @@ public class WeakKeyCache<K, V> extends RefCache<K, V> {
             } else if (e.mHash == hash && keyEquals(k, key)) {
                 Entry<K, V> newEntry;
                 if (prev == null) {
-                    newEntry = new Entry<K, V>(this, hash, key, value, e.mNext);
+                    newEntry = new Entry<>(this, hash, key, value, e.mNext);
                 } else {
                     prev.mNext = e.mNext;
-                    newEntry = new Entry<K, V>(this, hash, key, value, entries[index]);
+                    newEntry = new Entry<>(this, hash, key, value, entries[index]);
                 }
                 entries[index] = newEntry;
                 return e.mValue;
@@ -92,7 +92,7 @@ public class WeakKeyCache<K, V> extends RefCache<K, V> {
             }
         }
 
-        entries[index] = new Entry<K, V>(this, hash, key, value, entries[index]);
+        entries[index] = new Entry<>(this, hash, key, value, entries[index]);
         mSize++;
         return null;
     }
@@ -172,7 +172,7 @@ public class WeakKeyCache<K, V> extends RefCache<K, V> {
             for (Entry<K, V> e = entries[i]; e != null; e = e.mNext) {
                 K key = e.get();
                 if (key != null) {
-                    c.add(new SimpleImmutableEntry<K, V>(key, e.mValue));
+                    c.add(new SimpleImmutableEntry<>(key, e.mValue));
                 }
             }
         }

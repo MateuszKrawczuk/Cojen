@@ -26,7 +26,7 @@ import org.cojen.util.WeakKeyCache;
  */
 public class TestWeakKeyCache {
     public static void main(String[] arg) throws Exception {
-        Cache<Integer, Integer> cache = new WeakKeyCache<Integer, Integer>(100);
+        Cache<Integer, Integer> cache = new WeakKeyCache<>(100);
 
         for (int i = 0, j = 0; i < 100000; i++, j += 15) {
             if (i % 100 == 0) {

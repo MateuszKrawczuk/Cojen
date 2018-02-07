@@ -82,7 +82,7 @@ public class WeakValuedHashMap<K, V> extends ReferencedValueHashMap<K, V> {
     }
 
     Entry<K, V> newEntry(int hash, K key, V value, Entry<K, V> next) {
-        return new WeakEntry<K, V>(hash, key, value, next);
+        return new WeakEntry<>(hash, key, value, next);
     }
 
     static class WeakEntry<K, V> extends ReferencedValueHashMap.Entry<K, V> {
@@ -96,11 +96,11 @@ public class WeakValuedHashMap<K, V> extends ReferencedValueHashMap<K, V> {
         }
 
         Entry newEntry(int hash, K key, Reference<V> value, Entry<K, V> next) {
-            return new WeakEntry<K, V>(hash, key, value, next);
+            return new WeakEntry<>(hash, key, value, next);
         }
 
         Reference<V> newReference(V value) {
-            return new WeakReference<V>(value);
+            return new WeakReference<>(value);
         }
     }
 }

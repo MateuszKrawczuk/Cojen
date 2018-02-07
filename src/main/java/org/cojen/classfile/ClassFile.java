@@ -132,7 +132,7 @@ public class ClassFile {
                                      AttributeFactory attrFactory)
         throws IOException
     {
-        return readFrom(din, loader, attrFactory, new HashMap<String, ClassFile>(11), null);
+        return readFrom(din, loader, attrFactory, new HashMap<>(11), null);
     }
 
     /**
@@ -236,7 +236,7 @@ public class ClassFile {
                                 innerClass.mInnerClassName = info.getInnerClassName().getValue();
                             }
                             if (cf.mInnerClasses == null) {
-                                cf.mInnerClasses = new ArrayList<ClassFile>();
+                                cf.mInnerClasses = new ArrayList<>();
                             }
                             cf.mInnerClasses.add(innerClass);
                         }
@@ -326,12 +326,12 @@ public class ClassFile {
     private ConstantClassInfo mThisClass;
     private ConstantClassInfo mSuperClass;
     
-    private List<ConstantClassInfo> mInterfaces = new ArrayList<ConstantClassInfo>(2);
-    private Set<String> mInterfaceSet = new HashSet<String>(7);
+    private List<ConstantClassInfo> mInterfaces = new ArrayList<>(2);
+    private Set<String> mInterfaceSet = new HashSet<>(7);
     
-    private List<FieldInfo> mFields = new ArrayList<FieldInfo>();
-    private List<MethodInfo> mMethods = new ArrayList<MethodInfo>();
-    private List<Attribute> mAttributes = new ArrayList<Attribute>();
+    private List<FieldInfo> mFields = new ArrayList<>();
+    private List<MethodInfo> mMethods = new ArrayList<>();
+    private List<Attribute> mAttributes = new ArrayList<>();
     
     private SourceFileAttr mSource;
 
@@ -476,7 +476,7 @@ public class ClassFile {
      */
     public MethodInfo[] getMethods() {
         int size = mMethods.size();
-        List<MethodInfo> methodsOnly = new ArrayList<MethodInfo>(size);
+        List<MethodInfo> methodsOnly = new ArrayList<>(size);
 
         for (MethodInfo method : mMethods) {
             String name = method.getName();
@@ -493,7 +493,7 @@ public class ClassFile {
      */
     public MethodInfo[] getConstructors() {
         int size = mMethods.size();
-        List<MethodInfo> ctorsOnly = new ArrayList<MethodInfo>(size);
+        List<MethodInfo> ctorsOnly = new ArrayList<>(size);
 
         for (MethodInfo method : mMethods) {
             if ("<init>".equals(method.getName())) {
@@ -871,7 +871,7 @@ public class ClassFile {
         inner.mOuterClass = this;
 
         if (mInnerClasses == null) {
-            mInnerClasses = new ArrayList<ClassFile>();
+            mInnerClasses = new ArrayList<>();
         }
 
         mInnerClasses.add(inner);

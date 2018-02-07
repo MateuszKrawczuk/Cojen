@@ -54,7 +54,7 @@ import org.cojen.classfile.constant.ConstantUTFInfo;
  */
 public class ConstantPool {
     // A set of ConstantInfo objects.
-    private Map<ConstantInfo, ConstantInfo> mConstants = new HashMap<ConstantInfo, ConstantInfo>();
+    private Map<ConstantInfo, ConstantInfo> mConstants = new HashMap<>();
     // Indexed list of constants.
     private Vector<ConstantInfo> mIndexedConstants;
     private int mEntries;
@@ -285,7 +285,7 @@ public class ConstantPool {
         dout.writeShort(size);
 
         if (mIndexedConstants == null || !mPreserveOrder) {
-            mIndexedConstants = new Vector<ConstantInfo>(size);
+            mIndexedConstants = new Vector<>(size);
             mIndexedConstants.setSize(size);
             int index = 1; // one-based constant pool index
             
@@ -331,7 +331,7 @@ public class ConstantPool {
 
     public static ConstantPool readFrom(DataInput din) throws IOException {
         int size = din.readUnsignedShort();
-        Vector<ConstantInfo> constants = new Vector<ConstantInfo>(size);
+        Vector<ConstantInfo> constants = new Vector<>(size);
         constants.setSize(size);
 
         int index = 1;

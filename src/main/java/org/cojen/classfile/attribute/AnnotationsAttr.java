@@ -36,7 +36,7 @@ public abstract class AnnotationsAttr extends Attribute {
     
     public AnnotationsAttr(ConstantPool cp, String name) {
         super(cp, name);
-        mAnnotations = new ArrayList<Annotation>(2);
+        mAnnotations = new ArrayList<>(2);
     }
     
     public AnnotationsAttr(ConstantPool cp, String name, int length, DataInput din)
@@ -45,7 +45,7 @@ public abstract class AnnotationsAttr extends Attribute {
         super(cp, name);
         
         int size = din.readUnsignedShort();
-        mAnnotations = new ArrayList<Annotation>(size);
+        mAnnotations = new ArrayList<>(size);
         
         for (int i=0; i<size; i++) {
             addAnnotation(new Annotation(cp, din));

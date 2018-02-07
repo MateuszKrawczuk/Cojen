@@ -62,10 +62,10 @@ public class SoftValueCache<K, V> extends RefCache<K, V> {
                 e.clear();
                 Entry<K, V> newEntry;
                 if (prev == null) {
-                    newEntry = new Entry<K, V>(this, hash, key, value, e.mNext);
+                    newEntry = new Entry<>(this, hash, key, value, e.mNext);
                 } else {
                     prev.mNext = e.mNext;
-                    newEntry = new Entry<K, V>(this, hash, key, value, entries[index]);
+                    newEntry = new Entry<>(this, hash, key, value, entries[index]);
                 }
                 entries[index] = newEntry;
                 return old;
@@ -83,7 +83,7 @@ public class SoftValueCache<K, V> extends RefCache<K, V> {
             }
         }
 
-        entries[index] = new Entry<K, V>(this, hash, key, value, entries[index]);
+        entries[index] = new Entry<>(this, hash, key, value, entries[index]);
         mSize++;
         return null;
     }
@@ -156,7 +156,7 @@ public class SoftValueCache<K, V> extends RefCache<K, V> {
             for (Entry<K, V> e = entries[i]; e != null; e = e.mNext) {
                 V value = e.get();
                 if (value != null) {
-                    c.add(new SimpleImmutableEntry<K, V>(e.mKey, value));
+                    c.add(new SimpleImmutableEntry<>(e.mKey, value));
                 }
             }
         }

@@ -333,7 +333,7 @@ public class IntHashMap<V> extends AbstractMap<Integer, V>
         }
         
         // Creates the new entry.
-        Entry<V> e = new Entry<V>(key, value, tab[index]);
+        Entry<V> e = new Entry<>(key, value, tab[index]);
         tab[index] = e;
         count++;
         return null;
@@ -584,7 +584,7 @@ public class IntHashMap<V> extends AbstractMap<Integer, V>
         }
         
         protected Object clone() {
-            return new Entry<V>(key, value, (next == null ? null : (Entry<V>) next.clone()));
+            return new Entry<>(key, value, (next == null ? null : (Entry<V>) next.clone()));
         }
         
         // Map.Entry Ops 

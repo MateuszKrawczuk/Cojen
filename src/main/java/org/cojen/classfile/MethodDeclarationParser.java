@@ -232,7 +232,7 @@ public class MethodDeclarationParser {
         }
         pos[0]++;
 
-        ArrayList<TypeDesc> list = new ArrayList<TypeDesc>();
+        ArrayList<TypeDesc> list = new ArrayList<>();
 
         boolean expectParam = false;
         while (pos[0] < length) {

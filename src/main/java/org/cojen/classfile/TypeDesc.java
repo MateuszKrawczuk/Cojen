@@ -92,11 +92,11 @@ public abstract class TypeDesc extends Descriptor implements Serializable {
     private final static Cache<String, TypeDesc> cDescriptorsToInstances;
 
     static {
-        cInstances = new WeakCanonicalSet<Descriptor>();
+        cInstances = new WeakCanonicalSet<>();
 
-        cClassesToInstances = new WeakIdentityCache<Class, TypeDesc>(17);
-        cNamesToInstances = new WeakValueCache<String, TypeDesc>(17);
-        cDescriptorsToInstances = new WeakValueCache<String, TypeDesc>(17);
+        cClassesToInstances = new WeakIdentityCache<>(17);
+        cNamesToInstances = new WeakValueCache<>(17);
+        cDescriptorsToInstances = new WeakValueCache<>(17);
 
         VOID = intern(new PrimitiveType("V", VOID_CODE));
         BOOLEAN = intern(new PrimitiveType("Z", BOOLEAN_CODE));
@@ -779,7 +779,7 @@ public abstract class TypeDesc extends Descriptor implements Serializable {
                 }
             }
             clazz = toClass(null);
-            mClassRef = new SoftReference<Class>(clazz);
+            mClassRef = new SoftReference<>(clazz);
             return clazz;
         }
 
@@ -821,7 +821,7 @@ public abstract class TypeDesc extends Descriptor implements Serializable {
         }
 
         void setClass(Class clazz) {
-            mClassRef = new SoftReference<Class>(clazz);
+            mClassRef = new SoftReference<>(clazz);
         }
     }
 

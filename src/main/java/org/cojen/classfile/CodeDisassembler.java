@@ -105,7 +105,7 @@ public class CodeDisassembler {
     public synchronized void disassemble(CodeAssembler assembler,
                                          LocalVariable[] params, Location returnLocation) {
         mAssembler = assembler;
-        mLocals = new Vector<Object>();
+        mLocals = new Vector<>();
         if (mHasThis = !mMethod.getModifiers().isStatic()) {
             // Reserve a slot for "this" parameter.
             mLocals.add(null);
@@ -1229,9 +1229,9 @@ public class CodeDisassembler {
     }
 
     private void gatherLabels() {
-        mLabels = new IntHashMap<Object>();
-        mCatchLocations = new IntHashMap<List<ExceptionHandler>>
-            (mExceptionHandlers.length * 2 + 1);
+        mLabels = new IntHashMap<>();
+        mCatchLocations = new IntHashMap<>
+                (mExceptionHandlers.length * 2 + 1);
         int labelKey;
 
         // Gather labels for any exception handlers.
@@ -1244,7 +1244,7 @@ public class CodeDisassembler {
             labelKey = handler.getCatchLocation().getLocation();
             List<ExceptionHandler> list = mCatchLocations.get(labelKey);
             if (list == null) {
-                list = new ArrayList<ExceptionHandler>(2);
+                list = new ArrayList<>(2);
                 mCatchLocations.put(labelKey, list);
             }
             list.add(handler);
@@ -1550,7 +1550,7 @@ public class CodeDisassembler {
                 return local;
             }
             // Variable takes on multiple types, so convert entry to a list.
-            List<LocalVariable> locals = new ArrayList<LocalVariable>(4);
+            List<LocalVariable> locals = new ArrayList<>(4);
             locals.add(local);
             local = mAssembler.createLocalVariable(null, type);
             locals.add(local);

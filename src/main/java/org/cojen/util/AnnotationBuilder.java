@@ -52,7 +52,7 @@ public class AnnotationBuilder extends AnnotationVisitor<Object, Annotation> {
 
     public AnnotationBuilder() {
         super(false);
-        mStack = new Stack<Annotation.MemberValue[]>();
+        mStack = new Stack<>();
     }
 
     public Object visit(String name, int pos, java.lang.annotation.Annotation value,

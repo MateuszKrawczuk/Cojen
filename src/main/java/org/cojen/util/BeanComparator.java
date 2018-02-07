@@ -107,7 +107,7 @@ public class BeanComparator<T> implements Comparator<T>, Serializable {
      * equal.
      */
     public static <T> BeanComparator<T> forClass(Class<T> clazz) {
-        return new BeanComparator<T>(clazz);
+        return new BeanComparator<>(clazz);
     }
 
     /**
@@ -245,7 +245,7 @@ public class BeanComparator<T> implements Comparator<T>, Serializable {
             propertyName = new String(propertyName);
         }
 
-        BeanComparator<T> bc = new BeanComparator<T>(this);
+        BeanComparator<T> bc = new BeanComparator<>(this);
         bc.mOrderByName = propertyName;
 
         if (subName != null) {
@@ -273,7 +273,7 @@ public class BeanComparator<T> implements Comparator<T>, Serializable {
      * restores the default comparison for the last order-by property.
      */
     public <S> BeanComparator<T> using(Comparator<S> c) {
-        BeanComparator<T> bc = new BeanComparator<T>(this);
+        BeanComparator<T> bc = new BeanComparator<>(this);
         bc.mOrderByName = mOrderByName;
         bc.mUsingComparator = c;
         bc.mFlags = mFlags;
@@ -286,7 +286,7 @@ public class BeanComparator<T> implements Comparator<T>, Serializable {
      * been specified, then reverse order is applied to the compared beans.
      */
     public BeanComparator<T> reverse() {
-        BeanComparator<T> bc = new BeanComparator<T>(this);
+        BeanComparator<T> bc = new BeanComparator<>(this);
         bc.mOrderByName = mOrderByName;
         bc.mUsingComparator = mUsingComparator;
         bc.mFlags = mFlags ^ 0x01;
@@ -304,7 +304,7 @@ public class BeanComparator<T> implements Comparator<T>, Serializable {
      * Calling 'nullHigh, reverse' is equivalent to calling 'reverse, nullLow'.
      */
     public BeanComparator<T> nullHigh() {
-        BeanComparator<T> bc = new BeanComparator<T>(this);
+        BeanComparator<T> bc = new BeanComparator<>(this);
         bc.mOrderByName = mOrderByName;
         bc.mUsingComparator = mUsingComparator;
         bc.mFlags = mFlags ^ ((mFlags & 0x01) << 1);
@@ -320,7 +320,7 @@ public class BeanComparator<T> implements Comparator<T>, Serializable {
      * Calling 'reverse, nullLow' is equivalent to calling 'nullHigh, reverse'.
      */
     public BeanComparator<T> nullLow() {
-        BeanComparator<T> bc = new BeanComparator<T>(this);
+        BeanComparator<T> bc = new BeanComparator<>(this);
         bc.mOrderByName = mOrderByName;
         bc.mUsingComparator = mUsingComparator;
         bc.mFlags = mFlags ^ ((~mFlags & 0x01) << 1);
@@ -341,7 +341,7 @@ public class BeanComparator<T> implements Comparator<T>, Serializable {
             // Already case-sensitive.
             return this;
         }
-        BeanComparator<T> bc = new BeanComparator<T>(this);
+        BeanComparator<T> bc = new BeanComparator<>(this);
         bc.mOrderByName = mOrderByName;
         bc.mUsingComparator = mUsingComparator;
         bc.mFlags = mFlags | 0x04;
@@ -363,7 +363,7 @@ public class BeanComparator<T> implements Comparator<T>, Serializable {
      * {@link String#compareTo(String) String.compareTo}.
      */
     public BeanComparator<T> collate(Comparator<String> c) {
-        BeanComparator<T> bc = new BeanComparator<T>(this);
+        BeanComparator<T> bc = new BeanComparator<>(this);
         bc.mOrderByName = mOrderByName;
         bc.mUsingComparator = mUsingComparator;
         bc.mFlags = mFlags & ~0x04;
@@ -975,7 +975,7 @@ public class BeanComparator<T> implements Comparator<T>, Serializable {
         private BeanComparator[] reduceRules(BeanComparator bc) {
             // Reduce the ordering rules by returning BeanComparators
             // that are at the end of the chain or before an order-by rule.
-            List<BeanComparator> rules = new ArrayList<BeanComparator>();
+            List<BeanComparator> rules = new ArrayList<>();
 
             rules.add(bc);
             String name = bc.mOrderByName;

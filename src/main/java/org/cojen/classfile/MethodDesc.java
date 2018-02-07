@@ -74,7 +74,7 @@ public class MethodDesc extends Descriptor implements Serializable {
             }
 
             StringBuffer buf = new StringBuffer();
-            List<TypeDesc> list = new ArrayList<TypeDesc>();
+            List<TypeDesc> list = new ArrayList<>();
 
             while ((c = desc.charAt(cursor++)) != ')') {
                 switch (c) {

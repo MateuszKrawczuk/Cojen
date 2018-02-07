@@ -114,9 +114,9 @@ public class ExceptionHandler<L extends Location> implements LocationRange<L> {
             catchTypeConstant = (ConstantClassInfo)cp.getConstant(catch_type);
         }
 
-        return new ExceptionHandler<FixedLocation>(new FixedLocation(start_pc),
-                                                   new FixedLocation(end_pc),
-                                                   new FixedLocation(handler_pc),
-                                                   catchTypeConstant);
+        return new ExceptionHandler<>(new FixedLocation(start_pc),
+                new FixedLocation(end_pc),
+                new FixedLocation(handler_pc),
+                catchTypeConstant);
     }
 }

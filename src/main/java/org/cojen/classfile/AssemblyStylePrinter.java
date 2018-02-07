@@ -1134,9 +1134,9 @@ class AssemblyStylePrinter implements DisassemblyTool.Printer {
     }
 
     private void gatherLabels() {
-        mLabels = new IntHashMap<Object>();
-        mCatchLocations = new IntHashMap<List<ExceptionHandler>>
-            (mExceptionHandlers.length * 2 + 1);
+        mLabels = new IntHashMap<>();
+        mCatchLocations = new IntHashMap<>
+                (mExceptionHandlers.length * 2 + 1);
 
         // Gather labels for any exception handlers.
         for (int i = mExceptionHandlers.length - 1; i >= 0; i--) {
@@ -1147,7 +1147,7 @@ class AssemblyStylePrinter implements DisassemblyTool.Printer {
             createLabel(labelKey);
             List<ExceptionHandler> list = mCatchLocations.get(labelKey);
             if (list == null) {
-                list = new ArrayList<ExceptionHandler>(2);
+                list = new ArrayList<>(2);
                 mCatchLocations.put(labelKey, list);
             }
             list.add(handler);

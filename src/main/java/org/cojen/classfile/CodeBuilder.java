@@ -244,12 +244,12 @@ public class CodeBuilder extends AbstractCodeAssembler implements CodeBuffer, Co
             catchClass = mCp.addConstantClass(catchClassName);
         }
 
-        ExceptionHandler<InstructionList.LabelInstruction> handler = 
-            new ExceptionHandler<InstructionList.LabelInstruction>
-            ((InstructionList.LabelInstruction)startLocation,
-             (InstructionList.LabelInstruction)endLocation,
-             (InstructionList.LabelInstruction)catchLocation,
-             catchClass);
+        ExceptionHandler<InstructionList.LabelInstruction> handler =
+                new ExceptionHandler<>
+                        ((InstructionList.LabelInstruction) startLocation,
+                                (InstructionList.LabelInstruction) endLocation,
+                                (InstructionList.LabelInstruction) catchLocation,
+                                catchClass);
 
         mInstructions.addExceptionHandler(handler);
     }

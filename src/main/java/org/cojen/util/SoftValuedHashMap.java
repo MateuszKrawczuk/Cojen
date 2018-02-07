@@ -81,7 +81,7 @@ public class SoftValuedHashMap<K, V> extends ReferencedValueHashMap<K, V> {
     }
 
     Entry<K, V> newEntry(int hash, K key, V value, Entry<K, V> next) {
-        return new SoftEntry<K, V>(hash, key, value, next);
+        return new SoftEntry<>(hash, key, value, next);
     }
 
     static class SoftEntry<K, V> extends ReferencedValueHashMap.Entry<K, V> {
@@ -95,11 +95,11 @@ public class SoftValuedHashMap<K, V> extends ReferencedValueHashMap<K, V> {
         }
 
         Entry newEntry(int hash, K key, Reference<V> value, Entry<K, V> next) {
-            return new SoftEntry<K, V>(hash, key, value, next);
+            return new SoftEntry<>(hash, key, value, next);
         }
 
         Reference<V> newReference(V value) {
-            return new SoftReference<V>(value);
+            return new SoftReference<>(value);
         }
     }
 }

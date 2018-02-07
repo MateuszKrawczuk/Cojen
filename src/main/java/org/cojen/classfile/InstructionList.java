@@ -76,8 +76,8 @@ class InstructionList implements CodeBuffer {
     boolean mResolved = false;
 
     private List<ExceptionHandler<LabelInstruction>> mExceptionHandlers =
-        new ArrayList<ExceptionHandler<LabelInstruction>>(4);
-    private List<LocalVariable> mLocalVariables = new ArrayList<LocalVariable>();
+            new ArrayList<>(4);
+    private List<LocalVariable> mLocalVariables = new ArrayList<>();
     private int mNextFixedVariableNumber;
 
     private int mMaxStack;
@@ -260,7 +260,7 @@ class InstructionList implements CodeBuffer {
             livenessAnalysis(liveIn, liveOut);
             
             // Register number -> list of variables that use that register.
-            List<List<LocalVariable>> registerUsers = new ArrayList<List<LocalVariable>>();
+            List<List<LocalVariable>> registerUsers = new ArrayList<>();
             
             // First fill up list with variables that have a fixed number.
             for (LocalVariable mLocalVariable : mLocalVariables) {
@@ -290,7 +290,7 @@ class InstructionList implements CodeBuffer {
 
             if (mSaveLocalVariableInfo) {
                 // Create indexable list of instructions.
-                List<Instruction> instrList = new ArrayList<Instruction>(instrCount);
+                List<Instruction> instrList = new ArrayList<>(instrCount);
                 instrList.addAll(getInstructions());
 
                 for (int v=0; v<size; v++) {
@@ -317,7 +317,7 @@ class InstructionList implements CodeBuffer {
                             firstRange = range;
                         } else {
                             if (rangeSet == null) {
-                                rangeSet = new HashSet<LocationRange>(5);
+                                rangeSet = new HashSet<>(5);
                                 rangeSet.add(firstRange);
                             }
                             rangeSet.add(range);
@@ -368,7 +368,7 @@ class InstructionList implements CodeBuffer {
         {
             // Start the flow analysis at the first instruction.
             Map<LabelInstruction, Integer> subAdjustMap =
-                new HashMap<LabelInstruction, Integer>(11);
+                    new HashMap<>(11);
             stackResolve(0, mFirst, subAdjustMap);
 
             // Continue flow analysis into exception handler entry points.
@@ -486,7 +486,7 @@ class InstructionList implements CodeBuffer {
                         if (passCount == 0 && loi instanceof StoreLocalInstruction) {
                             List<StoreLocalInstruction> stores = localStores[varIndex];
                             if (stores == null) {
-                                stores = new ArrayList<StoreLocalInstruction>();
+                                stores = new ArrayList<>();
                                 localStores[varIndex] = stores;
                             }
                             stores.add((StoreLocalInstruction)loi);
@@ -572,7 +572,7 @@ class InstructionList implements CodeBuffer {
 
     private List<LocalVariable> getRegisterUsers(List<List<LocalVariable>> registerUsers,int num) {
         while (registerUsers.size() <= num) {
-            registerUsers.add(new ArrayList<LocalVariable>());
+            registerUsers.add(new ArrayList<>());
         }
         return registerUsers.get(num);
     }
@@ -946,7 +946,7 @@ class InstructionList implements CodeBuffer {
          */
         public void addExceptionHandler(ExceptionHandler<LabelInstruction> handler) {
             if (mExceptionHandlers == null) {
-                mExceptionHandlers = new HashSet<ExceptionHandler<LabelInstruction>>(4);
+                mExceptionHandlers = new HashSet<>(4);
             }
             mExceptionHandlers.add(handler);
         }

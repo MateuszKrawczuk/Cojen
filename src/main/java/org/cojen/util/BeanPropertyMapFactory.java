@@ -46,7 +46,7 @@ import java.util.TreeSet;
  */
 public abstract class BeanPropertyMapFactory<B> {
     private static final Cache<Class, SoftReference<BeanPropertyMapFactory>> cFactories =
-        new WeakIdentityCache<Class, SoftReference<BeanPropertyMapFactory>>(17);
+            new WeakIdentityCache<>(17);
 
     /**
      * Returns a new or cached BeanPropertyMapFactory for the given class.
@@ -75,7 +75,7 @@ public abstract class BeanPropertyMapFactory<B> {
                 {
                     // Exclude property.
                     if (supportedProperties == properties) {
-                        supportedProperties = new HashMap<String, BeanProperty>(properties);
+                        supportedProperties = new HashMap<>(properties);
                     }
                     supportedProperties.remove(entry.getKey());
                 }
@@ -84,13 +84,13 @@ public abstract class BeanPropertyMapFactory<B> {
             if (supportedProperties.size() == 0) {
                 factory = Empty.INSTANCE;
             } else {
-                factory = new Standard<B>
-                    (BeanPropertyAccessor.forClass
-                     (clazz, BeanPropertyAccessor.PropertySet.READ_WRITE_UNCHECKED_EXCEPTIONS),
-                     supportedProperties);
+                factory = new Standard<>
+                        (BeanPropertyAccessor.forClass
+                                (clazz, BeanPropertyAccessor.PropertySet.READ_WRITE_UNCHECKED_EXCEPTIONS),
+                                supportedProperties);
             }
 
-            cFactories.put(clazz, new SoftReference<BeanPropertyMapFactory>(factory));
+            cFactories.put(clazz, new SoftReference<>(factory));
             return factory;
         }
     }
@@ -120,7 +120,7 @@ public abstract class BeanPropertyMapFactory<B> {
     private static class Empty extends BeanPropertyMapFactory {
         static final Empty INSTANCE = new Empty();
         static final SortedMap<String, Object> EMPTY_MAP =
-            Collections.unmodifiableSortedMap(new TreeMap<String, Object>());
+            Collections.unmodifiableSortedMap(new TreeMap<>());
 
         private Empty() {
         }
@@ -141,7 +141,7 @@ public abstract class BeanPropertyMapFactory<B> {
             mAccessor = accessor;
 
             // Only reveal readable properties.
-            SortedSet<String> propertyNames = new TreeSet<String>();
+            SortedSet<String> propertyNames = new TreeSet<>();
             for (BeanProperty property : properties.values()) {
                 if (property.getReadMethod() != null) {
                     propertyNames.add(property.getName());

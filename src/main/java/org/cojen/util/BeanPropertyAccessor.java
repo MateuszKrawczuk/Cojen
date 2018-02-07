@@ -71,7 +71,7 @@ public abstract class BeanPropertyAccessor<B> {
 
     private static final
         Map<PropertySet, Cache<Class, SoftReference<BeanPropertyAccessor>>> cAccessors =
-        new HashMap<PropertySet, Cache<Class, SoftReference<BeanPropertyAccessor>>>();
+            new HashMap<>();
 
     /**
      * Returns a new or cached BeanPropertyAccessor for the given class.
@@ -84,7 +84,7 @@ public abstract class BeanPropertyAccessor<B> {
         synchronized (cAccessors) {
             Cache<Class, SoftReference<BeanPropertyAccessor>> accessors = cAccessors.get(set);
             if (accessors == null) {
-                accessors = new WeakIdentityCache<Class, SoftReference<BeanPropertyAccessor>>(17);
+                accessors = new WeakIdentityCache<>(17);
                 cAccessors.put(set, accessors);
             }
 
@@ -97,7 +97,7 @@ public abstract class BeanPropertyAccessor<B> {
                 }
             }
             bpa = generate(clazz, set);
-            accessors.put(clazz, new SoftReference<BeanPropertyAccessor>(bpa));
+            accessors.put(clazz, new SoftReference<>(bpa));
             return bpa;
         }
     }

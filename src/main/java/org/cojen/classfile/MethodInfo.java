@@ -58,7 +58,7 @@ public class MethodInfo {
     private ConstantUTFInfo mNameConstant;
     private ConstantUTFInfo mDescriptorConstant;
     
-    private List<Attribute> mAttributes = new ArrayList<Attribute>(2);
+    private List<Attribute> mAttributes = new ArrayList<>(2);
 
     private CodeAttr mCode;
     private ExceptionsAttr mExceptions;

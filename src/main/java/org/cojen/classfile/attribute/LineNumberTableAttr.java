@@ -37,7 +37,7 @@ import org.cojen.classfile.Location;
  */
 public class LineNumberTableAttr extends Attribute {
 
-    private List<Entry> mEntries = new ArrayList<Entry>();
+    private List<Entry> mEntries = new ArrayList<>();
     private boolean mClean = false;
     
     public LineNumberTableAttr(ConstantPool cp) {
@@ -117,12 +117,12 @@ public class LineNumberTableAttr extends Attribute {
             // a pc location, but before they did not. Since entries must be
             // sorted ascending by start_pc, use a sorted set.
 
-            Set<Entry> reduced = new TreeSet<Entry>();
+            Set<Entry> reduced = new TreeSet<>();
             for (int i = mEntries.size(); --i >= 0; ) {
                 reduced.add(mEntries.get(i));
             }
 
-            mEntries = new ArrayList<Entry>(reduced);
+            mEntries = new ArrayList<>(reduced);
         }
     }
 

@@ -79,8 +79,8 @@ public class CodeAssemblerPrinter extends AbstractCodeAssembler implements CodeA
             builder += '.';
         }
         mBulder = builder;
-        mTypeDescNames = new HashMap<TypeDesc, String>();
-        mTypeDescArrayNames = new HashMap<List<TypeDesc>, String>();
+        mTypeDescNames = new HashMap<>();
+        mTypeDescArrayNames = new HashMap<>();
 
         mParams = new LocalVariable[paramTypes.length];
 

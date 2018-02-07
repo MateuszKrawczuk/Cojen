@@ -90,7 +90,7 @@ public class WeakCanonicalSet<T> extends AbstractSet<T> {
             }
         }
 
-        entries[index] = new Entry<T>(this, obj, hash, entries[index]);
+        entries[index] = new Entry<>(this, obj, hash, entries[index]);
         mSize++;
         return obj;
     }

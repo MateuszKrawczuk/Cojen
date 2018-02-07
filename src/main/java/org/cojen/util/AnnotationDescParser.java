@@ -132,7 +132,7 @@ public class AnnotationDescParser {
     }
 
     private Annotation.MemberValue parseArray(Annotation dest, char compTag, TypeDesc compType) {
-        List<Annotation.MemberValue> mvList = new ArrayList<Annotation.MemberValue>();
+        List<Annotation.MemberValue> mvList = new ArrayList<>();
         while (true) {
             try {
                 if (mStr.charAt(mPos) == ';') {

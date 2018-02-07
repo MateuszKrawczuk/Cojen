@@ -36,7 +36,7 @@ public abstract class ParameterAnnotationsAttr extends Attribute {
     
     public ParameterAnnotationsAttr(ConstantPool cp, String name) {
         super(cp, name);
-        mParameterAnnotations = new Vector<Vector<Annotation>>(2);
+        mParameterAnnotations = new Vector<>(2);
     }
     
     public ParameterAnnotationsAttr(ConstantPool cp, String name, int length, DataInput din)
@@ -45,11 +45,11 @@ public abstract class ParameterAnnotationsAttr extends Attribute {
         super(cp, name);
 
         int size = din.readUnsignedByte();
-        mParameterAnnotations = new Vector<Vector<Annotation>>(size);
+        mParameterAnnotations = new Vector<>(size);
 
         for (int i=0; i<size; i++) {
             int subSize = din.readUnsignedShort();
-            Vector<Annotation> annotations = new Vector<Annotation>(subSize);
+            Vector<Annotation> annotations = new Vector<>(subSize);
 
             for (int j=0; j<subSize; j++) {
                 annotations.add(new Annotation(cp, din));
@@ -100,7 +100,7 @@ public abstract class ParameterAnnotationsAttr extends Attribute {
         }
         Vector<Annotation> annotations = mParameterAnnotations.get(parameter);
         if (annotations == null) {
-            annotations = new Vector<Annotation>(2);
+            annotations = new Vector<>(2);
             mParameterAnnotations.set(parameter, annotations);
         }
         annotations.add(annotation);

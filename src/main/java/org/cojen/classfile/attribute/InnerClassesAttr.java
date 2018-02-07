@@ -35,7 +35,7 @@ import org.cojen.classfile.constant.ConstantUTFInfo;
  */
 public class InnerClassesAttr extends Attribute {
 
-    private List<Info> mInnerClasses = new ArrayList<Info>();
+    private List<Info> mInnerClasses = new ArrayList<>();
 
     public InnerClassesAttr(ConstantPool cp) {
         super(cp, INNER_CLASSES);

@@ -25,7 +25,7 @@ import org.cojen.util.WeakCanonicalSet;
  */
 public class TestWeakCanonicalSet {
     public static void main(String[] arg) throws Exception {
-        WeakCanonicalSet<Integer> cache = new WeakCanonicalSet<Integer>();
+        WeakCanonicalSet<Integer> cache = new WeakCanonicalSet<>();
 
         for (int i = 0; i < 1000000; i++) {
             if (i % 100 == 0) {

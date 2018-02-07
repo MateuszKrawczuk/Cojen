@@ -43,7 +43,7 @@ import org.cojen.classfile.constant.ConstantUTFInfo;
  */
 public class LocalVariableTableAttr extends Attribute {
 
-    private List<Entry> mEntries = new ArrayList<Entry>(10);
+    private List<Entry> mEntries = new ArrayList<>(10);
     private List<Entry> mCleanEntries;
     private int mRangeCount;
     
@@ -219,7 +219,7 @@ public class LocalVariableTableAttr extends Attribute {
         // Clean out entries that are incomplete or bogus.
 
         int size = mEntries.size();
-        mCleanEntries = new ArrayList<Entry>(size);
+        mCleanEntries = new ArrayList<>(size);
         mRangeCount = 0;
 
         outer:

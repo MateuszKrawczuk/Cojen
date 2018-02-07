@@ -26,7 +26,7 @@ import org.cojen.util.SoftValueCache;
  */
 public class TestSoftValueCache {
     public static void main(String[] arg) throws Exception {
-        Cache<Integer, Integer> cache = new SoftValueCache<Integer, Integer>(100);
+        Cache<Integer, Integer> cache = new SoftValueCache<>(100);
 
         for (int i = 0, j = 0; i < 1000000; i++, j += 15) {
             if (i % 100 == 0) {

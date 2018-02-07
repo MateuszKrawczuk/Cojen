@@ -85,7 +85,7 @@ public class Annotation {
     
     public Annotation(ConstantPool cp) {
         mCp = cp;
-        mMemberValues = new LinkedHashMap<String, MemberValue>(2);
+        mMemberValues = new LinkedHashMap<>(2);
     }
     
     public Annotation(ConstantPool cp, DataInput din) throws IOException {
@@ -93,7 +93,7 @@ public class Annotation {
         mType = (ConstantUTFInfo)cp.getConstant(din.readUnsignedShort());
 
         int memberCount = din.readUnsignedShort();
-        mMemberValues = new LinkedHashMap<String, MemberValue>(memberCount);
+        mMemberValues = new LinkedHashMap<>(memberCount);
         
         for (int i=0; i<memberCount; i++) {
             String name = ((ConstantUTFInfo)cp.getConstant(din.readUnsignedShort())).getValue();

@@ -26,7 +26,7 @@ import org.cojen.util.WeakValueCache;
  */
 public class TestWeakValueCache {
     public static void main(String[] arg) throws Exception {
-        Cache<Integer, Integer> cache = new WeakValueCache<Integer, Integer>(100);
+        Cache<Integer, Integer> cache = new WeakValueCache<>(100);
 
         for (int i = 0, j = 0; i < 100000; i++, j += 15) {
             if (i % 100 == 0) {
