@@ -105,14 +105,12 @@ public abstract class BeanPropertyAccessor<B> {
     private static <B> BeanPropertyAccessor<B> generate(final Class<B> beanType,
                                                         final PropertySet set)
     {
-        return AccessController.doPrivileged(new PrivilegedAction<BeanPropertyAccessor<B>>() {
-            public BeanPropertyAccessor<B> run() {
-                Class clazz = generateClassFile(beanType, set).defineClass();
-                try {
-                    return (BeanPropertyAccessor<B>) clazz.newInstance();
-                } catch (InstantiationException | IllegalAccessException e) {
-                    throw new InternalError(e.toString());
-                }
+        return AccessController.doPrivileged((PrivilegedAction<BeanPropertyAccessor<B>>) () -> {
+            Class clazz = generateClassFile(beanType, set).defineClass();
+            try {
+                return (BeanPropertyAccessor<B>) clazz.newInstance();
+            } catch (InstantiationException | IllegalAccessException e) {
+                throw new InternalError(e.toString());
             }
         });
     }

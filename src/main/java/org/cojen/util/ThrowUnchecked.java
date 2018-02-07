@@ -96,11 +96,7 @@ public abstract class ThrowUnchecked {
                     impl = cImpl;
                     if (impl == null) {
                         cImpl = impl =
-                            AccessController.doPrivileged(new PrivilegedAction<ThrowUnchecked>() {
-                                public ThrowUnchecked run() {
-                                    return generateImpl();
-                                }
-                            });
+                            AccessController.doPrivileged((PrivilegedAction<ThrowUnchecked>) ThrowUnchecked::generateImpl);
                     }
                 }
             }

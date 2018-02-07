@@ -85,19 +85,15 @@ public class DisassemblyTool {
         try {
             final File file = new File(name);
             in = new FileInputStream(file);
-            loader = new ClassFileDataLoader() {
-                public InputStream getClassData(String name)
-                    throws IOException
-                {
-                    name = name.substring(name.lastIndexOf('.') + 1);
-                    File f = new File(file.getParentFile(), name + ".class");
+            loader = name1 -> {
+                name1 = name1.substring(name1.lastIndexOf('.') + 1);
+                File f = new File(file.getParentFile(), name1 + ".class");
 
-                    if (f.exists()) {
-                        return new FileInputStream(f);
-                    }
-
-                    return null;
+                if (f.exists()) {
+                    return new FileInputStream(f);
                 }
+
+                return null;
             };
         } catch (FileNotFoundException e) {
             if (name.endsWith(".class")) {

@@ -54,21 +54,19 @@ public abstract class PatternMatcher<V> {
         final Maker maker = new Maker(patternMap);
         final Class clazz = (Class)cPatternMatcherClasses.get(maker.getKey());
 
-        return AccessController.doPrivileged(new PrivilegedAction<PatternMatcher<V>>() {
-            public PatternMatcher<V> run() {
-                Class clz = clazz;
+        return AccessController.doPrivileged((PrivilegedAction<PatternMatcher<V>>) () -> {
+            Class clz = clazz;
 
-                if (clz == null) {
-                    clz = maker.createClassFile().defineClass();
-                    cPatternMatcherClasses.put(maker.getKey(), clz);
-                }
+            if (clz == null) {
+                clz = maker.createClassFile().defineClass();
+                cPatternMatcherClasses.put(maker.getKey(), clz);
+            }
 
-                try {
-                    Constructor ctor = clz.getConstructor(new Class[]{Object[].class});
-                    return (PatternMatcher)ctor.newInstance(new Object[]{maker.getMappedValues()});
-                } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException | InstantiationException e) {
-                    throw new InternalError(e.toString());
-                }
+            try {
+                Constructor ctor = clz.getConstructor(new Class[]{Object[].class});
+                return (PatternMatcher)ctor.newInstance(new Object[]{maker.getMappedValues()});
+            } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException | InstantiationException e) {
+                throw new InternalError(e.toString());
             }
         });
     }

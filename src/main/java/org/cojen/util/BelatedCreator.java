@@ -191,14 +191,12 @@ public abstract class BelatedCreator<T, E extends Exception> {
         if (mBogus == null) {
             mRef = new AtomicReference<>(createBogus());
 
-            mBogus = AccessController.doPrivileged(new PrivilegedAction<T>() {
-                public T run() {
-                    try {
-                        return getWrapper().newInstance(mRef);
-                    } catch (Exception e) {
-                        ThrowUnchecked.fire(e);
-                        return null;
-                    }
+            mBogus = AccessController.doPrivileged((PrivilegedAction<T>) () -> {
+                try {
+                    return getWrapper().newInstance(mRef);
+                } catch (Exception e) {
+                    ThrowUnchecked.fire(e);
+                    return null;
                 }
             });
         }

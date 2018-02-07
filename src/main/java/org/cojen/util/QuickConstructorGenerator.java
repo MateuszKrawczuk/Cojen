@@ -126,11 +126,7 @@ public class QuickConstructorGenerator {
         }
 
         final Cache<Class<?>, Object> fInnerCache = innerCache;
-        return AccessController.doPrivileged(new PrivilegedAction<F>() {
-            public F run() {
-                return getInstance(fInnerCache, objectType, factory);
-            }
-        });
+        return AccessController.doPrivileged((PrivilegedAction<F>) () -> getInstance(fInnerCache, objectType, factory));
     }
 
     private static synchronized <F> F getInstance(Cache<Class<?>, Object> innerCache,

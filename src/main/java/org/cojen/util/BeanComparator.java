@@ -374,11 +374,7 @@ public class BeanComparator<T> implements Comparator<T>, Serializable {
     public int compare(T obj1, T obj2) throws ClassCastException {
         Comparator<T> c = mComparator;
         if (c == null) {
-            mComparator = c = AccessController.doPrivileged(new PrivilegedAction<Comparator<T>>() {
-                public Comparator<T> run() {
-                    return generateComparator();
-                }
-            });
+            mComparator = c = AccessController.doPrivileged((PrivilegedAction<Comparator<T>>) this::generateComparator);
         }
         return c.compare(obj1, obj2);
     }
