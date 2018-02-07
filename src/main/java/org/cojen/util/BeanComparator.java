@@ -469,16 +469,8 @@ public class BeanComparator<T> implements Comparator<T>, Serializable {
                     (new Class[] {Comparator[].class, Comparator[].class});
                 c = (Comparator)ctor.newInstance
                     (new Object[] {collators, usingComparators});
-            } catch (NoSuchMethodException e) {
+            } catch (NoSuchMethodException | InstantiationException | InvocationTargetException | IllegalArgumentException | IllegalAccessException e) {
                 throw new InternalError(e.toString());
-            } catch (InstantiationException e) {
-                throw new InternalError(e.toString());
-            } catch (IllegalAccessException e) {
-                throw new InternalError(e.toString());
-            } catch (IllegalArgumentException e) {
-                throw new InternalError(e.toString());
-            } catch (InvocationTargetException e) {
-                throw new InternalError(e.getTargetException().toString());
             }
 
             if (singleton) {

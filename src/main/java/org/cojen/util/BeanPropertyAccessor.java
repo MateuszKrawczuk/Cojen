@@ -110,9 +110,7 @@ public abstract class BeanPropertyAccessor<B> {
                 Class clazz = generateClassFile(beanType, set).defineClass();
                 try {
                     return (BeanPropertyAccessor<B>) clazz.newInstance();
-                } catch (InstantiationException e) {
-                    throw new InternalError(e.toString());
-                } catch (IllegalAccessException e) {
+                } catch (InstantiationException | IllegalAccessException e) {
                     throw new InternalError(e.toString());
                 }
             }

@@ -213,9 +213,7 @@ public class QuickConstructorGenerator {
         F instance;
         try {
             instance = (F) cf.defineClass().newInstance();
-        } catch (IllegalAccessException e) {
-            throw new UndeclaredThrowableException(e);
-        } catch (InstantiationException e) {
+        } catch (IllegalAccessException | InstantiationException e) {
             throw new UndeclaredThrowableException(e);
         }
 

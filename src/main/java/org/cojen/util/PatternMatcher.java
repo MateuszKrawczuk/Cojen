@@ -66,13 +66,7 @@ public abstract class PatternMatcher<V> {
                 try {
                     Constructor ctor = clz.getConstructor(new Class[]{Object[].class});
                     return (PatternMatcher)ctor.newInstance(new Object[]{maker.getMappedValues()});
-                } catch (NoSuchMethodException e) {
-                    throw new InternalError(e.toString());
-                } catch (InstantiationException e) {
-                    throw new InternalError(e.toString());
-                } catch (IllegalAccessException e) {
-                    throw new InternalError(e.toString());
-                } catch (InvocationTargetException e) {
+                } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException | InstantiationException e) {
                     throw new InternalError(e.toString());
                 }
             }

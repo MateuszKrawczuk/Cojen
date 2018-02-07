@@ -114,9 +114,7 @@ public class MethodDesc extends Descriptor implements Serializable {
             TypeDesc[] tds = list.toArray(new TypeDesc[list.size()]);
 
             return intern(new MethodDesc(desc, ret, tds));
-        } catch (NullPointerException e) {
-            throw invalidDescriptor(desc);
-        } catch (IndexOutOfBoundsException e) {
+        } catch (NullPointerException | IndexOutOfBoundsException e) {
             throw invalidDescriptor(desc);
         }
     }

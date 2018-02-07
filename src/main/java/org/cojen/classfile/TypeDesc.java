@@ -336,9 +336,7 @@ public abstract class TypeDesc extends Descriptor implements Serializable {
             default:
                 throw invalidDescriptor(desc);
             }
-        } catch (NullPointerException e) {
-            throw invalidDescriptor(desc);
-        } catch (IndexOutOfBoundsException e) {
+        } catch (NullPointerException | IndexOutOfBoundsException e) {
             throw invalidDescriptor(desc);
         }
 
