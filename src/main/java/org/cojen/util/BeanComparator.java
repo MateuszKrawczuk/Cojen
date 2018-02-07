@@ -56,7 +56,7 @@ import org.cojen.classfile.TypeDesc;
  * The results of sorting Threads using this Comparator and displaying the
  * results in a table may look like this:
  *
- * <p><table border="2">
+ * <p><table summary="" border="2">
  * <tr><th>name</th><th>threadGroup.name</th><th>priority</th></tr>
  * <tr><td>daemon</td><td>appGroup</td><td>9</td></tr>
  * <tr><td>main</td><td>main</td><td>5</td></tr>
