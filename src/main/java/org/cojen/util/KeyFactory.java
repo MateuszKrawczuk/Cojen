@@ -277,9 +277,9 @@ public class KeyFactory {
         for (int i=0; i<length; i++) {
             int av = a[i] ? 0 : 1;
             int bv = b[i] ? 0 : 1;
-            return av < bv ? -1 : (av > bv ? 1 : 0);
+            return Integer.compare(av, bv);
         }
-        return a.length < b.length ? -1 : (a.length > b.length ? 1 : 0);
+        return Integer.compare(a.length, b.length);
     }
 
     static int compare(byte[] a, byte[] b) {
@@ -296,9 +296,9 @@ public class KeyFactory {
         for (int i=0; i<length; i++) {
             byte av = a[i];
             byte bv = b[i];
-            return av < bv ? -1 : (av > bv ? 1 : 0);
+            return Byte.compare(av, bv);
         }
-        return a.length < b.length ? -1 : (a.length > b.length ? 1 : 0);
+        return Integer.compare(a.length, b.length);
     }
 
     static int compare(char[] a, char[] b) {
@@ -315,9 +315,9 @@ public class KeyFactory {
         for (int i=0; i<length; i++) {
             char av = a[i];
             char bv = b[i];
-            return av < bv ? -1 : (av > bv ? 1 : 0);
+            return Character.compare(av, bv);
         }
-        return a.length < b.length ? -1 : (a.length > b.length ? 1 : 0);
+        return Integer.compare(a.length, b.length);
     }
 
     static int compare(double[] a, double[] b) {
@@ -337,7 +337,7 @@ public class KeyFactory {
                 return v;
             }
         }
-        return a.length < b.length ? -1 : (a.length > b.length ? 1 : 0);
+        return Integer.compare(a.length, b.length);
     }
 
     static int compare(float[] a, float[] b) {
@@ -357,7 +357,7 @@ public class KeyFactory {
                 return v;
             }
         }
-        return a.length < b.length ? -1 : (a.length > b.length ? 1 : 0);
+        return Integer.compare(a.length, b.length);
     }
 
     static int compare(int[] a, int[] b) {
@@ -374,9 +374,9 @@ public class KeyFactory {
         for (int i=0; i<length; i++) {
             int av = a[i];
             int bv = b[i];
-            return av < bv ? -1 : (av > bv ? 1 : 0);
+            return Integer.compare(av, bv);
         }
-        return a.length < b.length ? -1 : (a.length > b.length ? 1 : 0);
+        return Integer.compare(a.length, b.length);
     }
 
     static int compare(long[] a, long[] b) {
@@ -393,9 +393,9 @@ public class KeyFactory {
         for (int i=0; i<length; i++) {
             long av = a[i];
             long bv = b[i];
-            return av < bv ? -1 : (av > bv ? 1 : 0);
+            return Long.compare(av, bv);
         }
-        return a.length < b.length ? -1 : (a.length > b.length ? 1 : 0);
+        return Integer.compare(a.length, b.length);
     }
 
     static int compare(short[] a, short[] b) {
@@ -412,9 +412,9 @@ public class KeyFactory {
         for (int i=0; i<length; i++) {
             short av = a[i];
             short bv = b[i];
-            return av < bv ? -1 : (av > bv ? 1 : 0);
+            return Short.compare(av, bv);
         }
-        return a.length < b.length ? -1 : (a.length > b.length ? 1 : 0);
+        return Integer.compare(a.length, b.length);
     }
 
     // Compares object arrays and recurses into arrays within.
@@ -435,7 +435,7 @@ public class KeyFactory {
                 return v;
             }
         }
-        return a.length < b.length ? -1 : (a.length > b.length ? 1 : 0);
+        return Integer.compare(a.length, b.length);
     }
 
     // Compares objects or arrays and recurses into arrays within.

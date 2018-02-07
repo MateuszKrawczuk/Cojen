@@ -138,14 +138,8 @@ public class LineNumberTableAttr extends Attribute {
         public int compareTo(Entry other) {
             int thisLoc = mStart.getLocation();
             int thatLoc = other.mStart.getLocation();
-            
-            if (thisLoc < thatLoc) {
-                return -1;
-            } else if (thisLoc > thatLoc) {
-                return 1;
-            } else {
-                return 0;
-            }
+
+            return Integer.compare(thisLoc, thatLoc);
         }
 
         public boolean equals(Object other) {
